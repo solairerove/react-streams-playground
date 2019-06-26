@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import reduxThunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const logger = createLogger({
+  collapsed: true
+});
 const store = createStore(
   reducers,
   composeEnhancer(applyMiddleware(reduxThunk, logger))

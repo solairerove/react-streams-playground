@@ -1,4 +1,5 @@
 import streams from '../apis/streams';
+import createBrowserHistory from '../history';
 import {
   CREATE_STREAM,
   DELETE_STREAM,
@@ -27,6 +28,7 @@ export const createStream = formValues => async (dispatch, getState) => {
   const response = await streams.post('/streams', { ...formValues, userId });
 
   dispatch({ type: CREATE_STREAM, payload: response.data });
+  createBrowserHistory.push('/');
 };
 
 export const fetchStreams = () => async dispatch => {
