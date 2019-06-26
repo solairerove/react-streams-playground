@@ -8,6 +8,7 @@ class StreamEdit extends React.Component {
     this.props.getStream(this.props.match.params.id);
   }
 
+  // почему полный объект
   // onSubmit = (id, formValues) => {
   onSubmit = formValues => {
     // this.props.changeStream(id, formValues);
@@ -18,11 +19,13 @@ class StreamEdit extends React.Component {
     if (!this.props.stream) {
       return <div>Loading...</div>;
     } else {
+      const { title, description } = this.props.stream;
       return (
         <div>
           <h3>Edit a Stream</h3>
+          <p>{this.props.stream.title}</p>
           <StreamForm
-            initialValues={this.props.stream}
+            initialValues={{ title, description }}
             onSubmit={this.onSubmit}
           />
         </div>
